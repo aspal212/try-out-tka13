@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Soal Baru - Try Out TKA13</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <i class="bi bi-mortarboard-fill"></i>
+                Try Out TKA13 - Admin
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="questions.html">Manajemen Soal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="participants.html">Peserta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="results.html">Hasil Ujian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exam-management.html">Kelola Ujian</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="settings.html">Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid mt-4">
+        <!-- Page Header -->
+        <div class="row mb-4">
+            <div class="col">
+                <h2><i class="bi bi-plus-circle"></i> Tambah Soal Baru</h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="questions.html">Manajemen Soal</a></li>
+                        <li class="breadcrumb-item active">Tambah Soal</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form id="questionForm">
+            <div class="row">
+                <!-- Main Form -->
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Informasi Soal</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Question Text -->
+                            <div class="mb-3">
+                                <label for="questionText" class="form-label">Pertanyaan <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="questionText" rows="4" 
+                                    placeholder="Masukkan pertanyaan ujian..." required></textarea>
+                            </div>
+
+                            <!-- Question Image -->
+                            <div class="mb-3">
+                                <label for="questionImage" class="form-label">Gambar (Opsional)</label>
+                                <input type="file" class="form-control" id="questionImage" accept="image/*">
+                                <div class="form-text">Maksimal 2MB, format JPG/PNG</div>
+                            </div>
+
+                            <!-- Answer Options -->
+                            <div class="mb-3">
+                                <label class="form-label">Pilihan Jawaban <span class="text-danger">*</span></label>
+                                
+                                <!-- Option A -->
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">A</span>
+                                    <input type="text" class="form-control" id="optionA" placeholder="Pilihan A" required>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="setCorrectAnswer('A')">
+                                        <i class="bi bi-check-circle"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Option B -->
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">B</span>
+                                    <input type="text" class="form-control" id="optionB" placeholder="Pilihan B" required>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="setCorrectAnswer('B')">
+                                        <i class="bi bi-check-circle"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Option C -->
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">C</span>
+                                    <input type="text" class="form-control" id="optionC" placeholder="Pilihan C" required>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="setCorrectAnswer('C')">
+                                        <i class="bi bi-check-circle"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Option D -->
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">D</span>
+                                    <input type="text" class="form-control" id="optionD" placeholder="Pilihan D" required>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="setCorrectAnswer('D')">
+                                        <i class="bi bi-check-circle"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Option E -->
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">E</span>
+                                    <input type="text" class="form-control" id="optionE" placeholder="Pilihan E (Opsional)">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="setCorrectAnswer('E')">
+                                        <i class="bi bi-check-circle"></i>
+                                    </button>
+                                </div>
+                                
+                                <div id="correctAnswerDisplay" class="mt-2">
+                                    <small class="text-muted">Belum ada jawaban yang dipilih</small>
+                                </div>
+                            </div>
+
+                            <!-- Explanation -->
+                            <div class="mb-3">
+                                <label for="explanation" class="form-label">Penjelasan Jawaban</label>
+                                <textarea class="form-control" id="explanation" rows="3" 
+                                    placeholder="Jelaskan mengapa jawaban tersebut benar..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Options -->
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5>
+                                <button class="btn btn-link p-0" type="button" data-bs-toggle="collapse" data-bs-target="#advancedOptions">
+                                    Opsi Lanjutan
+                                </button>
+                            </h5>
+                        </div>
+                        <div class="collapse" id="advancedOptions">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="timeLimit" class="form-label">Waktu (detik)</label>
+                                            <input type="number" class="form-control" id="timeLimit" min="10" max="300" value="60">
+                                            <div class="form-text">Waktu untuk menjawab soal ini</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="points" class="form-label">Poin</label>
+                                            <input type="number" class="form-control" id="points" min="1" max="10" value="1">
+                                            <div class="form-text">Poin untuk jawaban benar</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Question Settings -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Pengaturan Soal</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Category -->
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Kategori <span class="text-danger">*</span></label>
+                                <select class="form-select" id="category" required>
+                                    <option value="">Pilih Kategori</option>
+                                    <option value="matematika">Matematika</option>
+                                    <option value="bahasa">Bahasa Indonesia</option>
+                                    <option value="ipa">IPA</option>
+                                    <option value="ips">IPS</option>
+                                    <option value="english">English</option>
+                                </select>
+                            </div>
+
+                            <!-- Difficulty -->
+                            <div class="mb-3">
+                                <label for="difficulty" class="form-label">Level Kesulitan <span class="text-danger">*</span></label>
+                                <select class="form-select" id="difficulty" required>
+                                    <option value="">Pilih Level</option>
+                                    <option value="mudah">Mudah</option>
+                                    <option value="sedang">Sedang</option>
+                                    <option value="sulit">Sulit</option>
+                                </select>
+                            </div>
+
+                            <!-- Type -->
+                            <div class="mb-3">
+                                <label for="questionType" class="form-label">Tipe Soal <span class="text-danger">*</span></label>
+                                <select class="form-select" id="questionType" required>
+                                    <option value="pilihan_ganda">Pilihan Ganda</option>
+                                    <option value="benar_salah">Benar/Salah</option>
+                                    <option value="essay">Essay</option>
+                                </select>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Status</label>
+                                <select class="form-select" id="status">
+                                    <option value="aktif">Aktif</option>
+                                    <option value="draft">Draft</option>
+                                    <option value="nonaktif">Nonaktif</option>
+                                </select>
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="mb-3">
+                                <label for="tags" class="form-label">Tag</label>
+                                <input type="text" class="form-control" id="tags" placeholder="algebra, geometri,...">
+                                <div class="form-text">Pisahkan dengan koma</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-save"></i> Simpan Soal
+                                </button>
+                                <button type="button" class="btn btn-success">
+                                    <i class="bi bi-save-fill"></i> Simpan & Tambah Lagi
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="previewQuestion()">
+                                    <i class="bi bi-eye"></i> Preview
+                                </button>
+                                <a href="questions.html" class="btn btn-outline-danger">
+                                    <i class="bi bi-x-circle"></i> Batal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Help -->
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h6><i class="bi bi-question-circle"></i> Bantuan</h6>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><small>• Isi semua field wajib (*)</small></li>
+                                <li><small>• Pilih jawaban yang benar</small></li>
+                                <li><small>• Gunakan bahasa yang jelas</small></li>
+                                <li><small>• Tambahkan penjelasan jika perlu</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+    <script src="../assets/js/admin-questions-form.js"></script>
+</body>
+</html>

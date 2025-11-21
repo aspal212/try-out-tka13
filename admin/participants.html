@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Peserta - Try Out TKA13</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <i class="bi bi-mortarboard-fill"></i>
+                Try Out TKA13 - Admin
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="questions.html">Manajemen Soal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="participants.html">Peserta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="results.html">Hasil Ujian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exam-management.html">Kelola Ujian</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="settings.html">Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid mt-4">
+        <!-- Page Header -->
+        <div class="row mb-4">
+            <div class="col">
+                <h2><i class="bi bi-people"></i> Manajemen Peserta</h2>
+                <p class="text-muted">Kelola data peserta ujian dengan mudah</p>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#bulkImportModal">
+                    <i class="bi bi-upload"></i> Import Peserta
+                </button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addParticipantModal">
+                    <i class="bi bi-person-plus"></i> Tambah Peserta
+                </button>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h5>Total Peserta</h5>
+                                <h3>1,234</h3>
+                            </div>
+                            <i class="bi bi-people" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h5>Aktif</h5>
+                                <h3>1,100</h3>
+                            </div>
+                            <i class="bi bi-check-circle" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h5>Menunggu</h5>
+                                <h3>89</h3>
+                            </div>
+                            <i class="bi bi-clock" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-danger text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h5>Terblokir</h5>
+                                <h3>45</h3>
+                            </div>
+                            <i class="bi bi-x-circle" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Cari nama, email, atau ID..." id="searchParticipant">
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="filterStatus">
+                    <option value="">Semua Status</option>
+                    <option value="aktif">Aktif</option>
+                    <option value="menunggu">Menunggu Verifikasi</option>
+                    <option value="terblokir">Terblokir</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="filterExam">
+                    <option value="">Semua Ujian</option>
+                    <option value="tka13-2025">TKA13 2025</option>
+                    <option value="simulasi-1">Simulasi 1</option>
+                    <option value="simulasi-2">Simulasi 2</option>
+                </select>
+            </div>
+            <div class="col-md-2">

@@ -9,110 +9,264 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand" href="../index.html">
                 <i class="bi bi-mortarboard-fill"></i>
-                Try Out TKA13
+                Try Out TKA13 - Admin
             </a>
-            <div class="navbar-nav ms-auto">
-                <span class="navbar-text">
-                    <i class="bi bi-person-circle"></i> Admin
-                </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="questions.html">Manajemen Soal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="participants.html">Peserta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="results.html">Hasil Ujian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exam-management.html">Kelola Ujian</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="settings.html">Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <h2 class="mb-4">Dashboard Admin</h2>
-        
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="card text-white bg-primary">
+    <!-- Main Content -->
+    <div class="container-fluid mt-4">
+        <!-- Page Header -->
+        <div class="row mb-4">
+            <div class="col">
+                <h2><i class="bi bi-speedometer2"></i> Dashboard Admin</h2>
+                <p class="text-muted">Selamat datang di panel administrasi Try Out TKA13</p>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card bg-primary text-white">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h5>Total Peserta</h5>
-                                <h3>1,234</h3>
+                                <h5 class="card-title">Total Peserta</h5>
+                                <h3 id="totalParticipants">1,234</h3>
+                                <small><i class="bi bi-arrow-up"></i> +12% dari bulan lalu</small>
                             </div>
-                            <i class="bi bi-people-fill" style="font-size: 2rem;"></i>
+                            <i class="bi bi-people-fill" style="font-size: 2.5rem; opacity: 0.8;"></i>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="col-md-3 mb-4">
-                <div class="card text-white bg-success">
+            <div class="col-md-3 mb-3">
+                <div class="card bg-success text-white">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h5>Soal Aktif</h5>
-                                <h3>56</h3>
+                                <h5 class="card-title">Total Soal</h5>
+                                <h3 id="totalQuestions">156</h3>
+                                <small><i class="bi bi-arrow-up"></i> +8 soal minggu ini</small>
                             </div>
-                            <i class="bi bi-question-circle-fill" style="font-size: 2rem;"></i>
+                            <i class="bi bi-question-circle-fill" style="font-size: 2.5rem; opacity: 0.8;"></i>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="col-md-3 mb-4">
-                <div class="card text-white bg-warning">
+            <div class="col-md-3 mb-3">
+                <div class="card bg-warning text-white">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h5>Ujian Berjalan</h5>
-                                <h3>12</h3>
+                                <h5 class="card-title">Ujian Aktif</h5>
+                                <h3 id="activeExams">12</h3>
+                                <small><i class="bi bi-clock"></i> 8 berjalan, 4 terjadwal</small>
                             </div>
-                            <i class="bi bi-clock-fill" style="font-size: 2rem;"></i>
+                            <i class="bi bi-play-circle-fill" style="font-size: 2.5rem; opacity: 0.8;"></i>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="col-md-3 mb-4">
-                <div class="card text-white bg-info">
+            <div class="col-md-3 mb-3">
+                <div class="card bg-info text-white">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h5>Hasil Selesai</h5>
-                                <h3>890</h3>
+                                <h5 class="card-title">Hasil Selesai</h5>
+                                <h3 id="completedResults">890</h3>
+                                <small><i class="bi bi-check-circle"></i> Rata-rata: 78.5</small>
                             </div>
-                            <i class="bi bi-check-circle-fill" style="font-size: 2rem;"></i>
+                            <i class="bi bi-trophy-fill" style="font-size: 2.5rem; opacity: 0.8;"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                <h5>Menu Admin</h5>
+        <!-- Recent Activities and Quick Actions -->
+        <div class="row">
+            <!-- Recent Activities -->
+            <div class="col-md-8 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="bi bi-clock-history"></i> Aktivitas Terbaru</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Waktu</th>
+                                        <th>Aktivitas</th>
+                                        <th>User</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2 menit lalu</td>
+                                        <td>Login ke sistem</td>
+                                        <td>admin@tka13.com</td>
+                                        <td><span class="badge bg-success">Berhasil</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>15 menit lalu</td>
+                                        <td>Tambah soal baru</td>
+                                        <td>admin@tka13.com</td>
+                                        <td><span class="badge bg-success">Selesai</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1 jam lalu</td>
+                                        <td>Ujian dimulai</td>
+                                        <td>Sistem</td>
+                                        <td><span class="badge bg-warning">Berjalan</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2 jam lalu</td>
+                                        <td> Peserta daftar</td>
+                                        <td>joni@email.com</td>
+                                        <td><span class="badge bg-info">Terdaftar</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3 jam lalu</td>
+                                        <td>Hasil ujian dipublikasikan</td>
+                                        <td>Sistem</td>
+                                        <td><span class="badge bg-success">Dipublikasikan</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <a href="#" class="btn btn-outline-primary w-100">
-                            <i class="bi bi-file-earmark-plus"></i> Tambah Soal
-                        </a>
+
+            <!-- Quick Actions -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="bi bi-lightning-fill"></i> Aksi Cepat</h5>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <a href="#" class="btn btn-outline-success w-100">
-                            <i class="bi bi-people"></i> Kelola Peserta
-                        </a>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <a href="add-question.html" class="btn btn-outline-primary">
+                                <i class="bi bi-plus-circle"></i> Tambah Soal Baru
+                            </a>
+                            <a href="exam-management.html" class="btn btn-outline-success">
+                                <i class="bi bi-play-circle"></i> Mulai Ujian
+                            </a>
+                            <a href="participants.html" class="btn btn-outline-info">
+                                <i class="bi bi-person-plus"></i> Tambah Peserta
+                            </a>
+                            <a href="results.html" class="btn btn-outline-warning">
+                                <i class="bi bi-download"></i> Export Hasil
+                            </a>
+                            <a href="settings.html" class="btn btn-outline-secondary">
+                                <i class="bi bi-gear"></i> Pengaturan Sistem
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <a href="#" class="btn btn-outline-warning w-100">
-                            <i class="bi bi-bar-chart"></i> Laporan Hasil
-                        </a>
+                </div>
+
+                <!-- System Status -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h6><i class="bi bi-cpu"></i> Status Sistem</h6>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <a href="#" class="btn btn-outline-danger w-100">
-                            <i class="bi bi-gear"></i> Pengaturan
-                        </a>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <i class="bi bi-server text-success" style="font-size: 1.5rem;"></i>
+                                <div><small>Server</small></div>
+                                <small class="text-success">Online</small>
+                            </div>
+                            <div class="col-4">
+                                <i class="bi bi-shield-check text-success" style="font-size: 1.5rem;"></i>
+                                <div><small>Keamanan</small></div>
+                                <small class="text-success">Aman</small>
+                            </div>
+                            <div class="col-4">
+                                <i class="bi bi-wifi text-warning" style="font-size: 1.5rem;"></i>
+                                <div><small>Network</small></div>
+                                <small class="text-warning">95%</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="bi bi-bar-chart"></i> Statistik Peserta Bulanan</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="participantsChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="bi bi-pie-chart"></i> Distribusi Nilai</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="gradesChart" width="400" height="200"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../assets/js/admin-dashboard.js"></script>
 </body>
 </html>
