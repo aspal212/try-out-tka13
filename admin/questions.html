@@ -240,6 +240,77 @@
         </div>
     </div>
 
+    <!-- Advanced Search and Filters -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Cari soal..." id="advancedSearch">
+    </div>
+    <div class="col-md-2">
+        <select class="form-select" id="categoryFilter">
+            <option value="">Semua Kategori</option>
+            <option value="matematika">Matematika</option>
+            <option value="bahasa">Bahasa Indonesia</option>
+            <option value="ipa">IPA</option>
+            <option value="ips">IPS</option>
+            <option value="english">English</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select class="form-select" id="difficultyFilter">
+            <option value="">Semua Level</option>
+            <option value="mudah">Mudah</option>
+            <option value="sedang">Sedang</option>
+            <option value="sulit">Sulit</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select class="form-select" id="statusFilter">
+            <option value="">Semua Status</option>
+            <option value="aktif">Aktif</option>
+            <option value="draft">Draft</option>
+            <option value="nonaktif">Nonaktif</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select class="form-select" id="sortBy">
+            <option value="created">Terbaru</option>
+            <option value="name">Nama</option>
+            <option value="difficulty">Level</option>
+            <option value="used">Paling Sering Digunakan</option>
+        </select>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-outline-secondary w-100" onclick="resetFilters()">
+            <i class="bi bi-arrow-clockwise"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Question Statistics Bar -->
+<div class="row mb-3">
+    <div class="col-md-12">
+        <div class="progress" style="height: 6px;">
+            <div class="progress-bar bg-success" style="width: 70%"></div>
+            <div class="progress-bar bg-warning" style="width: 20%"></div>
+            <div class="progress-bar bg-danger" style="width: 10%"></div>
+        </div>
+        <div class="row text-center mt-2">
+            <div class="col-md-3">
+                <small class="text-success">109 Aktif (70%)</small>
+            </div>
+            <div class="col-md-3">
+                <small class="text-warning">31 Draft (20%)</small>
+            </div>
+            <div class="col-md-3">
+                <small class="text-danger">16 Nonaktif (10%)</small>
+            </div>
+            <div class="col-md-3">
+                <small class="text-primary">Total: 156</small>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- Import/Export Modal -->
     <div class="modal fade" id="importModal" tabindex="-1">
         <div class="modal-dialog">
