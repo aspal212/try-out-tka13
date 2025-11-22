@@ -1,27 +1,18 @@
-# API Documentation
+# API Documentation - Try Out TKA13
 
-## Authentication
+## Base Information
+- **Version:** 1.0.0
+- **Base URL:** `http://localhost:3000/api`
+- **Authentication:** JWT Bearer Token
 
-- POST /api/auth/login
-- POST /api/auth/register
-- POST /api/auth/logout
+## Authentication Endpoints
 
-## Exams
+### POST /api/auth/login
+Login user
 
-- GET /api/exams
-- POST /api/exams
-- GET /api/exams/:id
-- PUT /api/exams/:id
-- DELETE /api/exams/:id
-
-## Questions
-
-- GET /api/questions
-- POST /api/questions
-- PUT /api/questions/:id
-- DELETE /api/questions/:id
-
-## Users
-
-- GET /api/users
-- PUT /api/users/:id
+**Request Body:**
+```json
+{
+  "username": "string",
+  "password": "string"
+}
