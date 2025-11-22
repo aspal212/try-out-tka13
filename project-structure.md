@@ -1,4 +1,5 @@
-.
+# Try Out TKA13 - Struktur Proyek
+
 ├── .git
 │   ├── COMMIT_EDITMSG
 │   ├── FETCH_HEAD
