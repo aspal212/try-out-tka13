@@ -137,3 +137,14 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Tambahkan jika belum ada:
+node_modules/
+.env
+.env.local
+npm-debug.log*
+.DS_Store
+dist/
+build/
+coverage/
+*.log
