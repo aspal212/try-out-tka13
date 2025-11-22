@@ -1,4 +1,5 @@
-./README.md
+# README.md
+
 ./admin/add-question.html
 ./admin/add.html
 ./admin/dashboard.html
